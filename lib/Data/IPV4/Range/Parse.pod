@@ -72,6 +72,8 @@ Same as 32
 
 =item * MIN_CIDR
 
+Same as 0
+
 =back
 
 =head2 PARSE_IP
@@ -163,6 +165,7 @@ Returns 2 integers representing the base and broadcast of a CIDR.
 =item * my ($start,$end)=parse_ipv4_range( '10 - 11' );
 
 =item * my ($start,$end)=Data::IPV4::Range::Parse->parse_ipv4_range( '10 - 11' );
+
 Returns 2 integers representing the start and end of a ip range.
 
 =item * my ($start,$end)=parse_ipv4_ip('10.0.0.1')

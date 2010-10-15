@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Data-IPV4-Range-Parse
-version:             0.02
+version:             0.03
 abstract:            Perl extension parsing ipv4 ranges
 license:             ~
 author:              

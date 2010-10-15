@@ -5,7 +5,7 @@ use warnings;
 use Carp qw(croak);
 use vars qw(@ISA %EXPORT_TAGS @EXPORT_OK $VERSION @EXPORT);
 
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 require Exporter;
 @ISA = qw(Exporter);
