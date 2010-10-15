@@ -21,7 +21,7 @@ Data::IPV4::Range::Parse - Perl extension parsing ipv4 ranges
 
 =head1 DESCRIPTION
 
-Simple Interface for getting getting start and ending address of ranges as integers.
+Simple Interface for getting start and ending address of ranges as integers.
 
 =head2 EXPORT
 
@@ -158,12 +158,12 @@ This section covers the Exportable range parser functions. An empty set is retur
 
 =item * my ($start,$end)=Data::IPV4::Range::Parse->parse_ipv4_cidr( '10/23' );
 
-Returns 2 integers representation the base and broadcast of a CIDR.
+Returns 2 integers representing the base and broadcast of a CIDR.
 
 =item * my ($start,$end)=parse_ipv4_range( '10 - 11' );
 
 =item * my ($start,$end)=Data::IPV4::Range::Parse->parse_ipv4_range( '10 - 11' );
-Returns 2 integers representation the start and end of a ip range.
+Returns 2 integers representing the start and end of a ip range.
 
 =item * my ($start,$end)=parse_ipv4_ip('10.0.0.1')
 
@@ -175,7 +175,7 @@ Returns 2 integers representing the input ip as a /32 range
 
 =item * my ($start,$end)= Data::IPV4::Range::Parse->auto_parse_ipv4_range( '10' );
 
-Attempts to figure out what type of range notation and calls the corresponding parse_ipv4_xxx function, returning an empty set or 2 integers representing the start and end of the range.
+Attempts to figure out what type of range notation and calls the corresponding parse_ipv4_xxx function, returning an empty set on failure or 2 integers representing the start and end of the range.
 
 =back
 

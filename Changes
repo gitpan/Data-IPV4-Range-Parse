@@ -1,14 +1,18 @@
 
 RCS file: /home/cvs/perl/Data-IPV4-Range-Parse/Changes,v
 Working file: Changes
-head: 1.1
+head: 1.2
 branch:
 locks: strict
 access list:
 symbolic names:
 keyword substitution: kv
-total revisions: 1;	selected revisions: 1
+total revisions: 2;	selected revisions: 2
 description:
+----------------------------
+revision 1.2
+date: 2010-10-15 17:26:41 -0400;  author: wicket;  state: Exp;  lines: +202 -4;  commitid: kF6VtjELHbmbhASu;
+rolling in change log
 ----------------------------
 revision 1.1
 date: 2010-10-15 17:17:30 -0400;  author: wicket;  state: Exp;  commitid: lUNXyqkb7ljZdASu;
@@ -69,14 +73,18 @@ Rolling in module for release
 
 RCS file: /home/cvs/perl/Data-IPV4-Range-Parse/lib/Data/IPV4/Range/Parse.pm,v
 Working file: lib/Data/IPV4/Range/Parse.pm
-head: 1.1
+head: 1.2
 branch:
 locks: strict
 access list:
 symbolic names:
 keyword substitution: kv
-total revisions: 1;	selected revisions: 1
+total revisions: 2;	selected revisions: 2
 description:
+----------------------------
+revision 1.2
+date: 2010-10-15 18:54:44 -0400;  author: wicket;  state: Exp;  lines: +1 -1;  commitid: Uouk6jiFwZ3mLASu;
+rolling pod fixes
 ----------------------------
 revision 1.1
 date: 2010-10-15 17:17:32 -0400;  author: wicket;  state: Exp;  commitid: lUNXyqkb7ljZdASu;
@@ -85,14 +93,18 @@ Rolling in module for release
 
 RCS file: /home/cvs/perl/Data-IPV4-Range-Parse/lib/Data/IPV4/Range/Parse.pod,v
 Working file: lib/Data/IPV4/Range/Parse.pod
-head: 1.1
+head: 1.2
 branch:
 locks: strict
 access list:
 symbolic names:
 keyword substitution: kv
-total revisions: 1;	selected revisions: 1
+total revisions: 2;	selected revisions: 2
 description:
+----------------------------
+revision 1.2
+date: 2010-10-15 18:54:44 -0400;  author: wicket;  state: Exp;  lines: +4 -4;  commitid: Uouk6jiFwZ3mLASu;
+rolling pod fixes
 ----------------------------
 revision 1.1
 date: 2010-10-15 17:17:32 -0400;  author: wicket;  state: Exp;  commitid: lUNXyqkb7ljZdASu;
