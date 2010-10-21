@@ -186,6 +186,12 @@ Attempts to figure out what type of range notation and calls the corresponding p
 
 Michael Shipper
 
+=head1 SourceForge Project
+
+As of version 1.04 the Project has been moved to SourceForge.net
+
+L<Data IPV4 Range Parse|https://sourceforge.net/projects/data-ipv4-range/>
+
 =head1 COPYRIGHT AND LICENSE
 
 Copyright (C) 2010 by Michael Shipper
