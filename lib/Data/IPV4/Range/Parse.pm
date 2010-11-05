@@ -5,54 +5,72 @@ use warnings;
 use Carp qw(croak);
 use vars qw(@ISA %EXPORT_TAGS @EXPORT_OK $VERSION @EXPORT);
 
-$VERSION = '1.04';
+$VERSION = '1.05';
 
 require Exporter;
 @ISA = qw(Exporter);
 
-%EXPORT_TAGS = ( 'ALL'=>\@EXPORT_OK );
-
-@EXPORT_OK=qw();
-
-push @EXPORT_OK,qw(
+@EXPORT_OK=qw(
  ALL_BITS
  MAX_CIDR
  MIN_CIDR
+
+ sort_quad
+ sort_notations
+
+ int_to_ip
+ ip_to_int
+
+ parse_ipv4_cidr
+ parse_ipv4_ip
+ parse_ipv4_range
+
+ broadcast_int
+ base_int
+ size_from_mask
+ hostmask
+ cidr_to_int
+
+ auto_parse_ipv4_range
 );
-$EXPORT_TAGS{CONSTANTS}=[qw(
- ALL_BITS
- MAX_CIDR
- MIN_CIDR
-)];
+
+%EXPORT_TAGS = ( 
+  ALL=>\@EXPORT_OK 
+  ,CONSTANTS=>[qw(
+    ALL_BITS
+    MAX_CIDR
+    MIN_CIDR
+  )]
+  ,PARSE_RANGE=>[qw(
+    parse_ipv4_cidr
+    parse_ipv4_ip
+    parse_ipv4_range
+    auto_parse_ipv4_range
+   )]
+  ,PARSE_IP=>[qw(
+    int_to_ip
+    ip_to_int
+  )]
+  ,SORT=>[qw(
+   sort_quad
+   sort_notations
+  )]
+  ,COMPUTE_FROM_INT=>[ qw(
+   broadcast_int
+   base_int
+   size_from_mask
+   hostmask
+   cidr_to_int
+  )]
+);
+
 use constant ALL_BITS=>0xffffffff;
 use constant MAX_CIDR=>32;
 use constant MIN_CIDR=>0;
 
-push @EXPORT_OK,
-  qw(
-    int_to_ip
-    ip_to_int
-  );
-
-$EXPORT_TAGS{PARSE_IP}=[qw(
-    int_to_ip
-    ip_to_int
-  )];
-
 sub int_to_ip ($) { shift if $#_>0;join '.',unpack('C4',(pack('N',$_[0]))) }
 sub ip_to_int ($) { shift if $#_>0;unpack('N',pack('C4',split(/\./,$_[0]))) }
 
-
-push @EXPORT_OK,
-  qw(
-    sort_quad
-    sort_notations
-  );
-
-$EXPORT_TAGS{SORT}=[qw(
-    sort_quad
-    sort_notations
-  )];
 sub sort_quad ($$) {
   my ($ip_a,$ip_b)=@_;
   ip_to_int($ip_a) <=> ip_to_int($ip_b)
@@ -67,24 +85,11 @@ sub sort_notations ($$) {
   $a_end <=> $b_end
 }
 
-push @EXPORT_OK,
-  qw(
-  broadcast_int
-  base_int
-  size_from_mask
-  hostmask
-  cidr_to_int
-);
-$EXPORT_TAGS{COMPUTE_FROM_INT}=[
-  qw(
-  broadcast_int
-  base_int
-  size_from_mask
-  hostmask
-  cidr_to_int
-  )
-];
-sub broadcast_int ($$) { shift if $#_>1;base_int($_[0],$_[1]) + hostmask($_[1]) }
+sub broadcast_int ($$) { 
+  shift if $#_>1;
+  base_int($_[0],$_[1]) + hostmask($_[1]) 
+}
+
 sub base_int ($$) { shift if $#_>1;$_[0] & $_[1] }
 sub size_from_mask ($) { shift if $#_>0;1 + hostmask($_[0] ) }
 sub hostmask ($) { shift if $#_>0;ALL_BITS & (~(ALL_BITS & $_[0])) }
@@ -98,9 +103,6 @@ sub cidr_to_int ($) {
   return 0 if $shift==MAX_CIDR;
   ALL_BITS & (ALL_BITS << $shift)
 }
-$EXPORT_TAGS{PARSE_RANGE}=[];
-push @EXPORT_OK,'parse_ipv4_cidr';
-push @{$EXPORT_TAGS{PARSE_RANGE}},'parse_ipv4_cidr';
 
 sub parse_ipv4_cidr {
   my $notation=$_[$#_];
@@ -129,9 +131,6 @@ sub parse_ipv4_cidr {
   ($first_int,$last_int)
 }
 
-push @EXPORT_OK,'parse_ipv4_range';
-push @{$EXPORT_TAGS{PARSE_RANGE}},'parse_ipv4_range';
-
 sub parse_ipv4_range {
   my $range=$_[$#_];
   return () unless defined($range);
@@ -148,8 +147,6 @@ sub parse_ipv4_range {
  ( ip_to_int($start) ,ip_to_int($end))
 }
 
-push @EXPORT_OK,'parse_ipv4_ip';
-push @{$EXPORT_TAGS{PARSE_RANGE}},'parse_ipv4_ip';
 
 sub parse_ipv4_ip {
   my $ip=$_[$#_];
@@ -158,17 +155,12 @@ sub parse_ipv4_ip {
   ( ip_to_int($ip) ,ip_to_int($ip))
 }
 
-push @EXPORT_OK,'auto_parse_ipv4_range';
-push @{$EXPORT_TAGS{PARSE_RANGE}},'auto_parse_ipv4_range';
-push @EXPORT,'auto_parse_ipv4_range';
-
 sub auto_parse_ipv4_range {
   my $source=$_[$#_];
   return parse_ipv4_cidr($source) if $source=~ /\//;
   return parse_ipv4_range($source) if $source=~ /-/;
   return parse_ipv4_ip($source);
 }
-
 
 1;
 __END__
